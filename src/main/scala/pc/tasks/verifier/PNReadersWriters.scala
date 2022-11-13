@@ -1,7 +1,4 @@
-package pc.tasks
-
-export pc.modelling.PetriNet
-import pc.utils.MSet
+package pc.tasks.verifier
 
 object PNReadersWriters:
 
@@ -9,6 +6,7 @@ object PNReadersWriters:
     case P1, P2, P3, P4, P5, P6, P7
 
   export Place.*
+  export pc.modelling.PetriNet
   export pc.modelling.PetriNet.*
   export pc.modelling.SystemAnalysis.*
   export pc.utils.MSet
@@ -26,4 +24,3 @@ object PNReadersWriters:
 @main def mainPNReadersWriters =
   import PNReadersWriters.*
   println(pnReadersWriters.paths(MSet(P1, P1, P5), 10).toList.mkString("\n"))
-
