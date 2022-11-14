@@ -2,9 +2,8 @@ package pc.tasks.verifier
 
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers.*
-import pc.utils.MSet
 
-class PNReadersWritersTest extends AnyFunSuite {
+class PNReadersWritersTest extends AnyFunSuite:
 
   import pc.tasks.verifier.PNReadersWriters.*
 
@@ -19,4 +18,3 @@ class PNReadersWritersTest extends AnyFunSuite {
       .paths(mSet, depth)
       .foreach(_ should contain noneOf (moreWriters, writersAndReaders))
   }
-}
