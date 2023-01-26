@@ -170,3 +170,11 @@ class Case12 extends AggregateProgramSkeleton {
   override def main() = foldhood(Set[ID]())(_ ++ _)(Set(nbr(mid())))
 }
 object DemoCase12 extends Simulation[Case12]
+
+//have in each node the ID of the closest neighbour
+//⇒ used minHoodPlus, construct a pair of distance (nbrRange) and id (idnbrm), note minHoodPlus
+//correctly works on pairs
+class Case8 extends AggregateProgramSkeleton {
+  override def main() = minHoodPlus((nbrRange, nbr(mid())))
+}
+object DemoCase8 extends Simulation[Case8]
