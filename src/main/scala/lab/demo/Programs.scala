@@ -184,10 +184,7 @@ object DemoCase8 extends Simulation[Case8]
 // => use max and maxHoodPlus smoothly
 class Case14 extends AggregateProgramSkeleton {
   import Builtins.Bounded.of_i
-//  override def main() = rep(mid())(x => x max maxHoodPlus(nbr(mid())) | foldhoodPlus(mid())(_ | _)(nbr(x))) // propagation
-//rep(mid())(x => x max maxHoodPlus(nbr(mid())) | maxHoodPlus(nbr(x)))
 
-  override def main() =
-    rep(mid())(x => x max maxHoodPlus(nbr(mid()))) // | maxHoodPlus(nbr(x))) // propagation
+  override def main() = rep(mid())(x => x max maxHoodPlus(nbr(mid())))
 }
 object DemoCase14 extends Simulation[Case14]
