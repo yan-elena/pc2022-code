@@ -2,16 +2,16 @@ package lab.demo
 
 import it.unibo.scafi.incarnations.BasicAbstractIncarnation
 import it.unibo.scafi.simulation.s2.frontend.incarnation.scafi.bridge.ExportEvaluation.EXPORT_EVALUATION
+import it.unibo.scafi.simulation.s2.frontend.incarnation.scafi.bridge.ScafiWorldIncarnation.EXPORT
 import it.unibo.scafi.simulation.s2.frontend.incarnation.scafi.bridge.SimulationInfo
 import it.unibo.scafi.simulation.s2.frontend.incarnation.scafi.configuration.{
   ScafiProgramBuilder,
   ScafiWorldInformation
 }
 import it.unibo.scafi.simulation.s2.frontend.incarnation.scafi.world.ScafiWorldInitializer.Random
-import it.unibo.scafi.simulation.s2.frontend.incarnation.scafi.bridge.ScafiWorldIncarnation.EXPORT
 import it.unibo.scafi.simulation.s2.frontend.view.{ViewSetting, WindowConfiguration}
-import lab.gui.patch.RadiusLikeSimulation
 import it.unibo.scafi.space.graphics2D.BasicShape2D.Circle
+import lab.gui.patch.RadiusLikeSimulation
 
 import scala.reflect._
 
@@ -178,3 +178,16 @@ class Case8 extends AggregateProgramSkeleton {
   override def main() = minHoodPlus((nbrRange, nbr(mid())))
 }
 object DemoCase8 extends Simulation[Case8]
+
+// gossip the maximum value of ID (type Int)
+// note a problem: it won't correctly repair upon network changes
+// => use max and maxHoodPlus smoothly
+class Case14 extends AggregateProgramSkeleton {
+  import Builtins.Bounded.of_i
+//  override def main() = rep(mid())(x => x max maxHoodPlus(nbr(mid())) | foldhoodPlus(mid())(_ | _)(nbr(x))) // propagation
+//rep(mid())(x => x max maxHoodPlus(nbr(mid())) | maxHoodPlus(nbr(x)))
+
+  override def main() =
+    rep(mid())(x => x max maxHoodPlus(nbr(mid()))) // | maxHoodPlus(nbr(x))) // propagation
+}
+object DemoCase14 extends Simulation[Case14]
