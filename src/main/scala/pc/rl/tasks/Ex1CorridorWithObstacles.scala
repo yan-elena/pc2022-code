@@ -7,7 +7,7 @@ object Ex1CorridorWithObstacles extends App:
   import pc.rl.model.QMatrix.Action.*
   import pc.rl.model.QMatrix.*
 
-  val obstacles = Set((7, 0), (1, 0), (1, 1), (3, 1), (3, 2), (5, 0), (5, 1), (7, 1), (7, 2))
+  val obstacles = Set((1, 0), (1, 1), (3, 1), (3, 2), (5, 0), (5, 1), (7, 1), (7, 2))
   val rl: QMatrix.Facade = Facade(
     width = 8,
     height = 3,
