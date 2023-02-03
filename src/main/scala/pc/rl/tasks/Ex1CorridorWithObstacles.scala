@@ -2,11 +2,12 @@ package pc.rl.tasks
 
 import pc.rl.model.QMatrix
 
-object TryQMatrix extends App:
+object Ex1CorridorWithObstacles extends App:
 
   import pc.rl.model.QMatrix.Action.*
   import pc.rl.model.QMatrix.*
 
+  val obstacles = Set((7, 0), (1, 0), (1, 1), (3, 1), (3, 2), (5, 0), (5, 1), (7, 1), (7, 2))
   val rl: QMatrix.Facade = Facade(
     width = 8,
     height = 3,
@@ -14,14 +15,7 @@ object TryQMatrix extends App:
     terminal = { case (7, 0) => true; case _ => false },
     reward = {
       case ((7, 0), _) => 100;
-      case ((1, 0), _) => -100;
-      case ((1, 1), _) => -100;
-      case ((3, 1), _) => -100;
-      case ((3, 2), _) => -100;
-      case ((5, 0), _) => -100;
-      case ((5, 1), _) => -100;
-      case ((7, 1), _) => -100;
-      case ((7, 2), _) => -100;
+      case (x, _) if obstacles.contains(x) => -100;
       case _ => -1
     },
     jumps = PartialFunction.empty,
