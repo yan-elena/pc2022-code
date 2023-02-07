@@ -25,6 +25,9 @@ object Ex1CorridorWithObstacles extends App:
     v0 = 1
   )
 
+  println("Obstacles: ")
+  println(rl.show((a, b) => if obstacles.contains((a, b)) then "*" else "-", "%2s"))
+
   val q0 = rl.qFunction
   println(rl.show(q0.vFunction, "%2.1f"))
   val q1 = rl.makeLearningInstance().learn(2000, 100, q0)
