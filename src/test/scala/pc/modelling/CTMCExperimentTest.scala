@@ -19,6 +19,6 @@ class CTMCExperimentTest extends AnyFunSuite:
     Transition(DONE, 1.0 --> DONE)
   )
 
-  test("simpleChannel should holds global DONE") {
+  test("All states of the trace should be globally DONE") {
     simpleChannel.globally[State](_ == DONE)(simpleChannel.newSimulationTrace(DONE, new Random).take(50)) shouldBe true
   }
