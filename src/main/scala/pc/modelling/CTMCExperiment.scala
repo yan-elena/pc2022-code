@@ -18,5 +18,9 @@ object CTMCExperiment:
       trace => prop(trace takeWhile (_.time <= timeBound))
 
     // a PRISM-like experiment, giving a statistical result (in [0,1])
-    def experiment(runs: Int = 10000, prop: Property[S], rnd:Random = new Random, s0:S, timeBound: Double): Double =
-      (0 until runs).count(i => bounded(timeBound)(prop)(self.newSimulationTrace(s0 ,rnd))).toDouble/runs
+    def experiment(runs: Int = 10000, prop: Property[S], rnd: Random = new Random, s0: S, timeBound: Double): Double =
+      (0 until runs).count(i => bounded(timeBound)(prop)(self.newSimulationTrace(s0, rnd))).toDouble / runs
+
+    // globally: in all the path, the property holds
+    def globally[A](filt: A => Boolean): Property[A] =
+      trace => trace forall (e => filt(e.state))
