@@ -7,6 +7,7 @@ object CTMCExperiment:
   import CTMCSimulation.*
 
   type Property[A] = Trace[A] => Boolean
+  type Probability[A] = Trace[A] => Double
 
   extension [S](self: CTMC[S])
     // globally is simply achieved by equivalence not G x= F not x
@@ -24,3 +25,7 @@ object CTMCExperiment:
     // globally: in all the path, the property holds
     def globally[A](filt: A => Boolean): Property[A] =
       trace => trace forall (e => filt(e.state))
+
+    // steady-state
+    def steadyState[A](filt: A => Boolean): Probability[A] =
+      trace => trace.count(e => filt(e.state)).toDouble / trace.size.toDouble
