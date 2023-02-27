@@ -175,8 +175,7 @@ object DemoCase12 extends Simulation[Case12]
 //⇒ used minHoodPlus, construct a pair of distance (nbrRange) and id (idnbrm), note minHoodPlus
 //correctly works on pairs
 class Case8 extends AggregateProgramSkeleton {
-  override def main() =
-    foldhoodPlus((Double.MaxValue, mid()))((d1, d2) => Set(d1, d2).minBy(_._1))((nbrRange, nbr(mid())))._2
+  override def main() = minHoodPlus((nbrRange, nbr(mid())))._2
 }
 object DemoCase8 extends Simulation[Case8]
 
