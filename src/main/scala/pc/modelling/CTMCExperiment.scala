@@ -28,4 +28,10 @@ object CTMCExperiment:
 
     // steady-state
     def steadyState[A](filt: A => Boolean): Probability[A] =
-      trace => trace.count(e => filt(e.state)).toDouble / trace.size.toDouble
+      trace =>
+        trace
+          .foldLeft((0.0, 0.0)) {
+            case ((a, t0), Event(t1, s)) if filt(s) => (a + (t1 - t0), t1)
+            case ((a, _), e) => (a, e.time)
+          }
+          ._1 / trace.last.time
