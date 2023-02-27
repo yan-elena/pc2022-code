@@ -32,7 +32,7 @@ class CTMCExperimentTest extends AnyFunSuite:
   test("Testing the steady-state probability for each state in the channel") {
     val ch = channel.newSimulationTrace(S0, new Random).take(1000)
 
-    channel.steadyState[State](_ == S0)(ch) shouldBe (0.0 +- 0.1)
-    channel.steadyState[State](_ == S0)(ch) shouldBe (0.6 +- 0.1)
-    channel.steadyState[State](_ == S0)(ch) shouldBe (0.3 +- 0.1)
+    channel.steadyState[State](_ == S0)(ch) shouldBe (0.0 +- 0.01)
+    channel.steadyState[State](_ == S1)(ch) shouldBe (0.33 +- 0.1)
+    channel.steadyState[State](_ == S2)(ch) shouldBe (0.66 +- 0.1)
   }
